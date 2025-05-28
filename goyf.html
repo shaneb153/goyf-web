@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Songs</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #6e44ff, #b892ff, #9e44ff, #d092ff);
+      background-size: 400% 400%;
+      animation: gradientBackground 15s ease infinite;
+      color: white;
+      overflow: hidden;
+      padding: 2rem;
+      min-height: 100vh;
+      position: relative;
+    }
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    h1, p, .spotify-embed, footer {
+      z-index: 1;
+      position: relative;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    p {
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .spotify-embed {
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .download-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .download-link {
+      padding: 1rem 2rem;
+      background-color: white;
+      color: #6e44ff;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .download-link:hover {
+      background-color: #6e44ff;
+      color: white;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #f1e6ff;
+      text-align: center;
+    }
+    .particle {
+      position: fixed;
+      background: white;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: sparkle 15s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes sparkle {
+      0% { transform: translateY(0vh); opacity: 0; }
+      10% { opacity: 0.6; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+    .trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1000;
+      animation: trailFade 1s linear forwards;
+    }
+    @keyframes trailFade {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Songs</h1>
+  <p>I love you.</p>
+
+  <div class="spotify-embed">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5l4n9qFn1eC9tneTxrTBS7?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <div class="download-container">
+    <a href="https://docs.google.com/document/d/1FlZqb5KkHBZcPgG0Xak4ZgyX1QiR0Jkciq47vKBIBXA/edit?usp=sharing" class="download-link" target="_blank">Download Song Explanations</a>
+  </div>
+
+  <footer>Made with love 💜</footer>
+
+  <script>
+    const numParticles = 80;
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.bottom = Math.random() * 100 + 'vh';
+      particle.style.animationDuration = 8 + Math.random() * 10 + 's';
+      particle.style.animationDelay = Math.random() * 10 + 's';
+      document.body.appendChild(particle);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = `${e.clientX}px`;
+      trail.style.top = `${e.clientY}px`;
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
